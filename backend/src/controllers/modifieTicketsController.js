@@ -1,4 +1,4 @@
-const ModifieTicket = require('../models/modifieTicket');
+const ModifieTicket = require('../models/modifieTickets');
 
 // Créer une nouvelle modification de ticket
 exports.createModifieTicket = async (req, res) => {

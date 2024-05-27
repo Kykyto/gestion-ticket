@@ -15,7 +15,4 @@ router.delete('/:id', authMiddleware.verifyToken, ticketController.deleteTicket)
 // Obtenir tous les tickets
 router.get('/', authMiddleware.verifyToken, ticketController.getAllTickets);
 
-// Obtenir les statistiques des tickets
-router.get('/stats', authMiddleware.verifyToken, ticketController.getTicketStats);
-
 module.exports = router;
