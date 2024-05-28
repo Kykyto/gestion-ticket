@@ -25,7 +25,7 @@
         <p class="navbar-text mb-0">Bienvenue {{ username }}</p>
       </div>
       <div v-else class="ml-auto">
-        <button class="btn btn-primary">S'enregistrer</button>
+        <router-link to="/login" class="btn btn-primary">Se connecter</router-link>
       </div>
     </div>
   </nav>

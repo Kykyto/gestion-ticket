@@ -7,13 +7,17 @@ import Tickets from "@/components/Tickets.vue";
 import Projets from "@/components/Projets.vue";
 import Clients from "@/components/Clients.vue";
 import Statistiques from "@/components/Statistiques.vue";
+import Login from "@/components/Login.vue";
+import Register from "@/components/Register.vue";
 
 const routes = [
     { path: '/', component: Home },
     { path: '/tickets', component: Tickets },
     { path: '/projets', component: Projets },
     { path: '/clients', component: Clients},
-    { path: '/statistiques', component: Statistiques }
+    { path: '/statistiques', component: Statistiques },
+    { path: '/login', component: Login},
+    { path: '/register', component: Register}
 ];
 
 const router = createRouter({
