@@ -19,6 +19,7 @@
         <input type="text" id="clientPhone" class="form-control" v-model="client.phone" />
       </div>
       <button type="submit" class="btn btn-primary">Mettre à jour</button>
+      <button type="button" class="btn btn-danger" @click="deleteClient">Supprimer</button>
     </form>
   </div>
 </template>
@@ -55,6 +56,7 @@ export default {
     },
     updateClient() {
       const clientId = this.$route.params.id;
+      // REQUETE POUR UPDATE LE CLIENT DANS LA BASE
       axios.put(`http://localhost:3000/clients/${clientId}`, {
         name: this.client.name,
         address: this.client.address,
@@ -66,6 +68,17 @@ export default {
           })
           .catch(error => {
             console.error('Erreur lors de la mise à jour du client :', error);
+          });
+    },
+    deleteClient() {
+      const clientId = this.$route.params.id;
+      // REQUETE POUR SUPPRIMER LE CLIENT
+      axios.delete(`http://localhost:3000/clients/${clientId}`)
+          .then(() => {
+            alert('Client supprimé avec succès');
+          })
+          .catch(error => {
+            console.error('Erreur lors de la suppression du client:', error);
           });
     }
   }

@@ -15,6 +15,8 @@ import CreateProject from "@/components/CreateProject.vue";
 import Ticket from "@/components/Ticket.vue";
 import Projet from "@/components/Projet.vue";
 import Client from "@/components/Client.vue";
+import User from "@/components/User.vue";
+import Users from "@/components/Users.vue";
 
 const routes = [
     { path: '/', component: Home },
@@ -29,7 +31,9 @@ const routes = [
     { path: '/create-project', component: CreateProject },
     { path: '/ticket/:id', name: 'Ticket', component: Ticket },
     { path: '/project/:id', name: 'Project', component: Projet },
-    { path: '/client/:id', name: 'Client', component: Client }
+    { path: '/client/:id', name: 'Client', component: Client },
+    { path: '/user/:id', name: 'User', component: User },
+    { path: '/users', component: Users }
 ];
 
 const router = createRouter({

@@ -15,6 +15,7 @@
         <input type="text" id="clientName" class="form-control" v-model="project.client.name" disabled />
       </div>
       <button type="submit" class="btn btn-primary">Mettre à jour</button>
+      <button type="button" class="btn btn-danger" @click="deleteProject">Supprimer</button>
     </form>
   </div>
 </template>
@@ -60,6 +61,17 @@ export default {
           })
           .catch(error => {
             console.error('Erreur lors de la mise à jour du projet:', error);
+          });
+    },
+    deleteProject() {
+      const projectId = this.$route.params.id;
+      // REQUETE POUR SUPPRIMER LE PROJET
+      axios.delete(`http://localhost:3000/projects/${projectId}`)
+          .then(() => {
+            alert('Projet supprimé avec succès');
+          })
+          .catch(error => {
+            console.error('Erreur lors de la suppression du projet:', error);
           });
     }
   }
