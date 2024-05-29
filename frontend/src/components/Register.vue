@@ -73,7 +73,7 @@ export default {
       let options = {
         headers:{'Authorization': localStorage.getItem('token')}
       }
-      axios.post(link, body,option).then(() => {
+      axios.post(link, body, options).then(() => {
         this.$router.push('/login');
       }).catch((error) => {
         console.error(error);
