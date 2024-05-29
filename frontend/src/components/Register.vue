@@ -59,12 +59,17 @@ export default {
   },
   methods: {
     register() {
-      axios.post('http://localhost:3000/auth/register', {
+      let link = 'http://localhost:3000/auth/register'
+      let body = {
         nom: this.nom + ' ' + this.prenom,
         email: this.email,
         mot_de_passe: this.mot_de_passe,
         role: this.isDeveloper ? 'developer' : 'reporter',
-      }).then(() => {
+        }
+      let options = {
+          headers:{'Authorization': localStorage.getItem('token')}
+        }
+      axios.post(link, body,option).then(() => {
         this.$router.push('/login');
       }).catch((error) => {
         console.error(error);
