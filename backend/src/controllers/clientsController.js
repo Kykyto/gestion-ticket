@@ -2,10 +2,9 @@ const Client = require('../models/client');
 
 // Créer un nouveau client
 exports.createClient = async (req, res) => {
-  const { nom, adresse, telephone, email } = req.body;
-
+  const { idClient, nom, adresse, telephone,email } = req.body;
   try {
-    const client = new Client({ nom, adresse, telephone, email });
+    const client = new Client({ idClient, nom, adresse, telephone,email});
     await client.save();
     res.status(201).json({ message: 'Client créé avec succès', client });
   } catch (error) {
