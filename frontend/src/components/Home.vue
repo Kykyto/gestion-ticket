@@ -28,6 +28,6 @@ export default {
   font-size: 100px;
   color: white;
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 100, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 </style>
