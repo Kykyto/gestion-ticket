@@ -27,4 +27,5 @@ const router = createRouter({
 
 const app = createApp(App);
 app.use(router);
+app.use(http,'http://localhost:3000')
 app.mount('#app');
