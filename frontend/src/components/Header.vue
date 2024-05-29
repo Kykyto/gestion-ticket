@@ -19,9 +19,12 @@
         </ul>
       </div>
       <div v-if="userLoggedIn" class="ml-auto">
-        <button class="btn btn-primary">Créer un ticket</button>
+        <router-link to="/create-ticket" class="btn btn-primary">Créer un ticket</router-link>
       </div>
-      <div v-if="userLoggedIn" class="ml-auto" style="margin-left: 20px;">
+      <div v-if="userLoggedIn" class="ml-auto">
+        <router-link to="/login" class="btn btn-primary" style="margin-left: 10px">Se déconnecter</router-link>
+      </div>
+      <div v-if="userLoggedIn" class="ml-auto" style="margin-left: 20px; margin-right: 20px">
         <p class="navbar-text mb-0">Bienvenue {{ username }}</p>
       </div>
       <div v-else class="ml-auto">
@@ -37,9 +40,23 @@ export default {
   data() {
     return {
       userLoggedIn: false,
-      username: '',
+      username: 'Username',
     }
-    // J'ai aucune idée de comment communiquer avec le back pour récupérer l'état de connexion et l'username
+  },
+  created() {
+    this.checkAuth();
+  },
+  methods: {
+    checkAuth() {
+      const token = localStorage.getItem('token');
+      if (token) {
+        this.userLoggedIn = true;
+        // Récupérer les informations de l'utilisateur à partir du token ou de l'API
+        this.username = 'Utilisateur'; // Remplacez par un appel API pour obtenir le nom d'utilisateur
+      } else {
+        this.userLoggedIn = false;
+      }
+    }
   }
 };
 </script>
