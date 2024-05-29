@@ -18,7 +18,7 @@
           </li>
         </ul>
       </div>
-      <div v-if="username==='admin'" class="ml-auto">
+      <div v-if="userId===0" class="ml-auto">
         <router-link to="/create-ticket" class="btn btn-primary">Gérer les utilisateurs</router-link>
       </div>
       <div v-if="userLoggedIn" class="ml-auto">
@@ -43,7 +43,6 @@ export default {
   data() {
     return {
       userLoggedIn: false,
-      username: 'Username',
       userId: ''
     }
   },
@@ -56,8 +55,7 @@ export default {
       if (token) {
         this.userLoggedIn = true;
         // Récupérer les informations de l'utilisateur à partir du token ou de l'API
-        this.username = 'Utilisateur'; // Remplacez par un appel API pour obtenir le nom d'utilisateur
-        this.userId = '' // RECUPERER L'USERID AVEC UNE REQUETE
+        this.userId = '' // RECUPERER L'USERID AVEC LE TOKEN
       } else {
         this.userLoggedIn = false;
       }
