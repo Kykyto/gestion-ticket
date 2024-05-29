@@ -1,8 +1,10 @@
 const Project = require('../models/project');
+const mongoose = require('mongoose');
 
 exports.createProject = async (req, res) => {
   try {
     const { nom, description, client_id } = req.body;
+    const projetId = new mongoose.Types.ObjectId();
     const project = await Project.create({ nom, description, client_id });
     res.status(201).json({ message: 'Projet créé avec succès', project });
   } catch (error) {
