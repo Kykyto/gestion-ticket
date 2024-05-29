@@ -30,7 +30,7 @@ const routes = [
     { path: '/create-client', component: CreateClient },
     { path: '/create-project', component: CreateProject },
     { path: '/ticket/:id', name: 'Ticket', component: Ticket },
-    { path: '/project/:id', name: 'Project', component: Projet },
+    { path: '/projet/:id', name: 'Projet', component: Projet },
     { path: '/client/:id', name: 'Client', component: Client },
     { path: '/user/:id', name: 'User', component: User },
     { path: '/users', component: Users }
