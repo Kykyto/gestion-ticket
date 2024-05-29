@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const connectDB = require('./dbconfig'); // Importer la fonction de connexion
 const app = express();
+const cors = require('cors');
 
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
@@ -14,6 +15,7 @@ const statsRoutes = require('./routes/stats');
 // Appeler la fonction de connexion à la base de données
 connectDB();
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/auth', authRoutes);
