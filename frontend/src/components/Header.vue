@@ -19,7 +19,7 @@
           </li>
         </ul>
       </div>
-      <div class="ml-auto">
+      <div v-if="isAdmin" class="ml-auto">
         <router-link to="/users" class="btn btn-primary">Gérer les utilisateurs</router-link>
       </div>
       <div  class="ml-auto">
@@ -43,20 +43,26 @@
 <script>
 export default {
   name: 'Header',
-  data() {
-    return {
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated;
+    },
+    userId() {
+      return this.$store.getters.user ? this.$store.getters.user.userId : null;
+    },
+    isAdmin() {
+      return this.$store.getters.user && this.$store.getters.user.userId === 'Admin';
     }
-  },
-  created() {
-    
   },
   methods: {
     logout() {
-      this.$store.commit('setToken',null);
+      this.$store.commit('setToken', null);
       this.$router.push('/login');
     }
-}}
+  }
+}
 </script>
+
 
 <style scoped>
 .container-fluid {
