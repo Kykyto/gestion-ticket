@@ -64,7 +64,6 @@ exports.getTicketsByUser = async (req, res) => {
         }
       }
     ]);
-
     res.json(ticketsByUser);
   } catch (error) {
     console.error('Error getting tickets by user:', error);

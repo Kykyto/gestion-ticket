@@ -41,25 +41,30 @@ export default {
       users: [], // Liste des utilisateurs
       userTicketsLastMonth: 0
     };
-  },
-  mounted() {
-    this.fetchGlobalStatistics();
-    this.fetchUsers();
+  },mounted() {
+    this.fetchTicketsByProject();
+    this.fetchTicketsByUser();
   },
   methods: {
-    // RECUPERER LE NOMBRE DE TICKETS TRAITES DANS LE DERNIER MOIS
-    fetchGlobalStatistics() {
-      // Fetch global statistics data from backend and update data properties
+    fetchTicketsByProject() {
+      axios.get('http://localhost:3000/stats/tickets-by-project')
+          .then(response => {
+            this.totalTicketsLastMonth = response.data.totalTicketsByProject;
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération des statistiques globales :', error);
+          });
     },
-    // RECUPERER TOUS LES UTILISATEURS (DEV ET RAPPORTEURS)
-    fetchUsers() {
-      // Fetch list of users from backend and update users data property
-    },
-    // RECUPERER LE NOMBRE DE TICKETS TRAITES DANS LE DERNIER MOIS PAR UN UTILISATEUR VIA SON ID
-    fetchUserStatistics(userId) {
-      // Fetch user specific statistics data from backend based on userId and update data properties
+    fetchTicketsByUser() {
+      axios.get('http://localhost:3000/stats/tickets-by-user')
+          .then(response => {
+            this.totalTicketsLastMonth = response.data.totalTicketsByUser;
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération des statistiques globales :', error);
+          });
     }
-  },
+   },
   watch: {
     selectedUser(newValue) {
       if (newValue) {
