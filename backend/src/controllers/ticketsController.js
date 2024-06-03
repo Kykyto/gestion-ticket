@@ -57,3 +57,18 @@ exports.getAllTickets = async (req, res) => {
     res.status(500).json({ message: 'Erreur lors de la récupération des tickets' });
   }
 };
+
+exports.getTicketById = async (req, res) => {
+  const ticketId = req.params.id;
+
+  try {
+    const ticket = await Ticket.findById(ticketId);
+    if (!ticket) {
+      return res.status(404).json({ message: 'Ticket non trouvé' });
+    }
+    res.json({ message: 'Ticket trouvé avec succès', ticket });
+  } catch (error) {
+    console.error('Erreur lors de la récupération du ticket :', error);
+    res.status(500).json({ message: 'Erreur lors de la récupération du ticket' });
+  }
+};
