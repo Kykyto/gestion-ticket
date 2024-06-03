@@ -14,16 +14,17 @@
     </div> -->
     <div v-if="loading">Chargement des projets...</div>
     <div v-else>
-      <div v-for="project in projects" :key="project._id":value="project._id" class="card mb-3">
-        <div class="card-body">
+      <div v-for="project in projects" :key="project._id" class="card mb-3">
+        <router-link :to="{ name: 'Project', params: { id: project._id } }" class="card-body">
           <h5 class="card-title">{{ project.nom }}</h5>
           <p class="card-text"><strong>Description :</strong> {{ project.description }}</p>
           <p class="card-text"><strong>Client :</strong> {{ project.client_id }}</p>
-        </div>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios';

@@ -8,16 +8,17 @@
     <div v-if="loading">Chargement des clients...</div>
     <div v-else>
       <div v-for="client in filteredClients" :key="client._id" class="card mb-3">
-        <div class="card-body">
+        <router-link :to="{ name: 'Client', params: { id: client._id } }" class="card-body">
           <h5 class="card-title">{{ client.nom }}</h5>
           <p class="card-text"><strong>Adresse :</strong> {{ client.adresse }}</p>
           <p class="card-text"><strong>Email :</strong> {{ client.email }}</p>
           <p class="card-text"><strong>Téléphone :</strong> {{ client.telephone }}</p>
-        </div>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios';
