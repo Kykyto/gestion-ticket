@@ -2,44 +2,43 @@
   <div class="container mt-5">
     <h1>Tickets</h1>
     <div class="filters mb-4">
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-4">
           <label for="clientFilter">Filtrer par client</label>
           <select id="clientFilter" class="form-select" v-model="selectedClient" @change="fetchTickets">
             <option value="">Tous les clients</option>
-            <option v-for="client in clients" :key="client.id" :value="client.id">{{ client.name }}</option>
+            <option v-for="client in clients" :key="client._id" :value="client._id">{{ client.name }}</option>
           </select>
         </div>
         <div class="col-md-4">
           <label for="projectFilter">Filtrer par projet</label>
           <select id="projectFilter" class="form-select" v-model="selectedProject" @change="fetchTickets">
             <option value="">Tous les projets</option>
-            <option v-for="project in projects" :key="project.id" :value="project.id">{{ project.name }}</option>
+            <option v-for="project in projects" :key="project._id" :value="project._id">{{ project.name }}</option>
           </select>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="tickets-list">
       <table class="table table-striped">
         <thead>
         <tr>
           <th>Titre</th>
-          <th>Client</th>
           <th>Projet</th>
           <th>Statut</th>
+          <th>Description</th>
           <th>Date de modification</th>
-          <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr v-for="ticket in tickets" :key="ticket.id">
-          <td>{{ ticket.title }}</td>
-          <td>{{ ticket.client?.name }}</td>
-          <td>{{ ticket.project?.name }}</td>
-          <td>{{ ticket.status }}</td>
-          <td>{{ new Date(ticket.modifiedDate).toLocaleString() }}</td>
+        <tr v-for="ticket in tickets" :key="ticket._id">
+          <td>{{ ticket.titre }}</td>
+          <td>{{ ticket.project_id }}</td>
+          <td>{{ ticket.statut }}</td>
+          <td>{{ ticket.description}}</td>
+          <td>{{ new Date(ticket.date_creation).toLocaleString() }}</td>
           <td>
-            <router-link :to="{ name: 'Ticket', params: { id: ticket.id } }" class="btn btn-primary">Voir</router-link>
+            <router-link :to="{ name: 'Ticket', params: { id: ticket._id } }" class="btn btn-primary">Voir</router-link>
           </td>
         </tr>
         </tbody>
@@ -80,9 +79,9 @@ export default {
     },
     fetchProjects() {
       // RECUPERER LES PROJETS
-      axios.get('http://localhost:3000/projects')
+      axios.get('http://localhost:3000/tickets')
           .then(response => {
-            this.projects = response.data;
+            this.tickets = response.data;
           })
           .catch(error => {
             console.error('Erreur lors de la récupération des projets:', error);

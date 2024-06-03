@@ -5,20 +5,20 @@
       <label for="searchProject" class="form-label">Rechercher un projet par nom :</label>
       <input type="text" id="searchProject" class="form-control" v-model="searchQuery" />
     </div>
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label for="selectClient" class="form-label">Filtrer par client :</label>
       <select id="selectClient" class="form-select" v-model="selectedClient">
         <option value="">Tous les clients</option>
-        <option v-for="client in clients" :key="client.id" :value="client.id">{{ client.name }}</option>
+        <option v-for="client in clients" :key="client._id" :value="client._id">{{ client.name }}</option>
       </select>
-    </div>
+    </div> -->
     <div v-if="loading">Chargement des projets...</div>
     <div v-else>
-      <div v-for="project in filteredProjects" :key="project.id" class="card mb-3">
+      <div v-for="project in projects" :key="project._id":value="project._id" class="card mb-3">
         <div class="card-body">
-          <h5 class="card-title">{{ project.name }}</h5>
+          <h5 class="card-title">{{ project.nom }}</h5>
           <p class="card-text"><strong>Description :</strong> {{ project.description }}</p>
-          <p class="card-text"><strong>Client :</strong> {{ project.clientName }}</p>
+          <p class="card-text"><strong>Client :</strong> {{ project.client_id }}</p>
         </div>
       </div>
     </div>
@@ -27,7 +27,6 @@
 
 <script>
 import axios from 'axios';
-
 export default {
   name: 'projects',
   data() {
@@ -66,15 +65,15 @@ export default {
           });
     }
   },
-  computed: {
-    filteredProjects() {
-      // Filtrer les projets en fonction de la recherche par nom et du client sélectionné
-      return this.projects.filter(project =>
-          project.name.toLowerCase().includes(this.searchQuery.toLowerCase()) &&
-          (this.selectedClient === '' || project.clientId === this.selectedClient)
-      );
-    }
-  }
+  // computed: {
+  //   filteredProjects() {
+  //     // Filtrer les projets en fonction de la recherche par nom et du client sélectionné
+  //     return this.projects.filter(project =>
+  //         project.name.toLowerCase().includes(this.searchQuery.toLowerCase()) &&
+  //         (this.selectedClient === '' || project.clientId === this.selectedClient)
+  //     );
+  //   }
+  // }
 };
 </script>
 

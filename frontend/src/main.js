@@ -29,9 +29,9 @@ const routes = [
     { path: '/create-ticket', component: CreateTicket,beforeEnter: isNoneAuthGuard },
     { path: '/create-client', component: CreateClient,beforeEnter: isNoneAuthGuard },
     { path: '/create-project', component: CreateProject,beforeEnter: isNoneAuthGuard },
-    { path: '/ticket/:id', name: 'Ticket', component: Ticket,beforeEnter: isNoneAuthGuard },
-    { path: '/projet/:id', name: 'Projet', component: Projet,beforeEnter: isNoneAuthGuard },
-    { path: '/client/:id', name: 'Client', component: Client,beforeEnter: isNoneAuthGuard },
+        { path: '/ticket/:id', name: 'Ticket', component: Ticket,beforeEnter: isNoneAuthGuard },
+        { path: '/projet/:id', name: 'Projet', component: Projet,beforeEnter: isNoneAuthGuard },
+        { path: '/client/:id', name: 'Client', component: Client,beforeEnter: isNoneAuthGuard },
     { path: '/user/:id', name: 'User', component: User,beforeEnter: isNoneAuthGuard },
     { path: '/users', component: Users }
 ];
