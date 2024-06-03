@@ -46,10 +46,11 @@ exports.deleteProject = async (req, res) => {
 
 exports.getAllProjects = async (req, res) => {
   try {
-    const projects = await Project.findAll();
+    const projects = await Project.find();
     res.json(projects);
   } catch (error) {
     console.error('Erreur lors de la récupération des projets:', error);
     res.status(500).json({ message: 'Erreur lors de la récupération des projets' });
   }
 };
+

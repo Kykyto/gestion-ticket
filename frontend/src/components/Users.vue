@@ -8,12 +8,14 @@
     </div>
     <div v-for="user in filteredUsers" :key="user.id">
       <router-link :to="'/user/' + user.id">{{ user.name }}</router-link>
-      <p>Rôle: {{ user.role }}</p>
+      <p>Nom: {{ user.nom }} --------- Rôle: {{ user.role }} </p>
+      <p></p>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'Users',
   data() {
@@ -26,9 +28,24 @@ export default {
     this.fetchUsers();
   },
   methods: {
-    fetchUsers() {
-      // Faites une requête API pour récupérer la liste des utilisateurs
-      // Assurez-vous de stocker la réponse dans this.users
+    async fetchUsers() {
+      this.loading = true;
+      this.errorMessage = '';
+      try {
+        const response = await axios.get('http://localhost:3000/users', {
+          headers: {
+            Authorization: this.$store.state.token,
+          }
+        });
+        this.users = response.data;
+        console.log('Réponse de la requête:', response);
+        this.filteredUsers = this.users;
+      } catch (error) {
+        console.error('Erreur lors de la récupération des utilisateurs :', error);
+        this.errorMessage = 'Erreur lors de la récupération des utilisateurs. Veuillez réessayer plus tard.';
+      } finally {
+        this.loading = false;
+      }
     },
     filterByRole(role) {
       this.filteredUsers = this.users.filter(user => user.role === role);

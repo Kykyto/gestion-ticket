@@ -13,6 +13,8 @@ const verifyToken = (req, res, next) => {
   //   req.userRole = decoded.role;
   //   next();
   // });
+  next();
+  console.log("hello 2")
   return true;
 };
 

@@ -42,8 +42,7 @@ export default {
         email: this.email,
         mot_de_passe: this.mot_de_passe,
       }).then((response) => {
-        console.log(response.data.token)
-        localStorage.setItem("token",response.data.token)
+        this.$store.commit('setToken', response.data.token);
         this.$router.push('/');
       }).catch((error) => {
         console.error(error);
