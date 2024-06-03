@@ -13,13 +13,14 @@
       </select>
     </div> -->
     <div v-if="loading">Chargement des projets...</div>
-    <div v-else>
+    <div v-else v-if="this.$store.getters.user.role == 'Admin'">
       <div v-for="project in projects" :key="project._id" class="card mb-3">
-        <router-link :to="{ name: 'Project', params: { id: project._id } }" class="card-body">
+        <div class="card-body">
           <h5 class="card-title">{{ project.nom }}</h5>
           <p class="card-text"><strong>Description :</strong> {{ project.description }}</p>
           <p class="card-text"><strong>Client :</strong> {{ project.client_id }}</p>
-        </router-link>
+          <router-link :to="{ name: 'Projet', params: { id: project._id } }" class="btn btn-primary">Voir</router-link>
+        </div>
       </div>
     </div>
   </div>

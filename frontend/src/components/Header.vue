@@ -48,10 +48,10 @@ export default {
       return this.$store.getters.isAuthenticated;
     },
     userId() {
-      return this.$store.getters.user ? this.$store.getters.user.userId : null;
+      return this.$store.getters.user ? this.$store.getters.role : null;
     },
     isAdmin() {
-      return this.$store.getters.user && this.$store.getters.user.userId === 'Admin';
+      return this.$store.getters.user.role == 'Admin';
     }
   },
   methods: {
